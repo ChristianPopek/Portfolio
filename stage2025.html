@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Stages — Popek Christian</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Space+Grotesk:wght@500;700&display=swap');
+    :root {
+      --bg: #0f172a;
+      --bg2: #0b1225;
+      --text: #e2e8f0;
+      --muted: #9aa9c3;
+      --card: rgba(255,255,255,.05);
+      --stroke: rgba(255,255,255,.1);
+      --acc: #7c3aed;
+      --acc2: #06b6d4;
+      --shadow: 0 8px 25px rgba(0,0,0,.3);
+      --r: 16px;
+    }
+    body {
+      font-family: Inter, system-ui, Segoe UI, Roboto, Arial;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(180deg, var(--bg), var(--bg2));
+      color: var(--text);
+    }
+    .container {
+      width: min(1100px, 92%);
+      margin: auto;
+    }
+    nav.nav {
+      width: 100%;
+      margin: 0 auto;
+      position: sticky;
+      top: 16px;
+      z-index: 50;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 12px;
+      border-radius: 28px;
+      background: rgba(255,255,255,.04);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--stroke);
+      box-shadow: var(--shadow);
+    }
+    nav.nav a,
+    .dropdown-toggle {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 700;
+      padding: 10px 16px;
+      border-radius: 999px;
+      opacity: 0.88;
+      transition: transform 0.15s ease, opacity 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+    }
+    nav.nav a:hover,
+    .dropdown:hover .dropdown-toggle {
+      opacity: 1;
+      transform: translateY(-1px);
+    }
+    nav.nav a.active,
+    .dropdown.active .dropdown-toggle {
+      background: linear-gradient(90deg, var(--acc), var(--acc2));
+      color: #fff;
+      opacity: 1;
+      box-shadow: 0 6px 18px rgba(124,58,237,.35);
+    }
+    .dropdown {
+      position: relative;
+    }
+    .dropdown::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 100%;
+      height: 14px;
+    }
+    .dropdown-menu {
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      position: absolute;
+      top: calc(100% + 2px);
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: rgba(15,23,42,.96);
+      border-radius: 14px;
+      border: 1px solid var(--stroke);
+      padding: 10px;
+      min-width: 190px;
+      box-shadow: var(--shadow);
+      z-index: 1000;
+    }
+    .dropdown-menu a {
+      color: var(--text);
+      padding: 8px 12px;
+      white-space: nowrap;
+      text-decoration: none;
+      font-weight: 600;
+      opacity: 0.92;
+      border-radius: 10px;
+    }
+    .dropdown-menu a:hover,
+    .dropdown-menu a.active {
+      background: rgba(255,255,255,0.08);
+      opacity: 1;
+    }
+    .dropdown:hover .dropdown-menu {
+      display: flex;
+    }
+    @media (max-width:720px) {
+      nav.nav { border-radius: 22px; padding: 10px; }
+      nav.nav a, .dropdown-toggle { width: 100%; }
+      .dropdown { width: 100%; }
+      .dropdown-menu { position: static; transform: none; margin-top: 8px; min-width: 0; }
+    }
+    header {
+      text-align: center;
+      padding: 60px 0 10px;
+    }
+    h1 {
+      font-family: "Space Grotesk";
+      font-size: clamp(28px, 4vw, 42px);
+      margin-bottom: 10px;
+    }
+    .timeline {
+      position: relative;
+      margin: 50px 0;
+      padding-left: 30px;
+      border-left: 2px solid var(--stroke);
+    }
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      border-left: 2px solid var(--acc2);
+      opacity: 0.4;
+    }
+    .stage-block {
+      margin-bottom: 60px;
+      position: relative;
+      padding-left: 30px;
+    }
+    .stage-logo{
+      position:absolute;
+      top:0;
+      right:0;
+      width:190px;
+      border-radius:8px;
+      box-shadow:var(--shadow);
+      border:1px solid var(--stroke);
+    }
+    .stage-block::before {
+      content: "";
+      position: absolute;
+      left: -11px;
+      top: 5px;
+      width: 18px;
+      height: 18px;
+      background: linear-gradient(135deg, var(--acc), var(--acc2));
+      border-radius: 50%;
+    }
+    .stage-block h2 {
+      font-family: "Space Grotesk";
+      font-size: 24px;
+      margin: 0 0 6px;
+    }
+    .stage-block p {
+      color: var(--muted);
+      line-height: 1.6;
+      margin: 0 0 8px;
+    }
+    .stage-highlight {
+      background: var(--card);
+      border: 1px solid var(--stroke);
+      border-radius: var(--r);
+      padding: 20px;
+      box-shadow: var(--shadow);
+      margin-top: 15px;
+    }
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      align-items: center;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+    .split img {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid var(--stroke);
+      box-shadow: var(--shadow);
+      transition: transform 0.25s;
+    }
+    .split img:hover {
+      transform: scale(1.03);
+    }
+    .caption {
+      text-align: center;
+      font-size: 14px;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+    ul {
+      padding-left: 20px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    li {
+      margin-bottom: 6px;
+    }
+    @media (max-width:720px) {
+      .stage-logo{
+        position:static;
+        display:block;
+        margin:0 0 10px auto;
+      }
+    }
+    footer {
+      text-align: center;
+      color: var(--muted);
+      padding: 20px 0;
+      margin-top: 60px;
+      border-top: 1px solid var(--stroke);
+      background: rgba(255,255,255,.03);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <nav class="nav">
+      <a href="index.html">Profil</a>
+      <a href="competence.html">Compétences</a>
+      <div class="dropdown active">
+        <span class="dropdown-toggle">Stages ▾</span>
+        <div class="dropdown-menu">
+          <a href="stage2026.html">Stage 2026</a>
+          <a href="stage2025.html" class="active">Stage 2025</a>
+        </div>
+      </div>
+      <a href="scolaire.html">Projets</a>
+      <a href="veille.html">Veille Technologique</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <header>
+      <h1>Expérience de stage</h1>
+      <p>Retour sur mon stage de première année de BTS SIO — option SISR</p>
+    </header>
+
+    <section class="timeline">
+      <div class="stage-block">
+  <h2>2025 — Literie du Comtat</h2>
+  <img class="stage-logo" src="literie.png" alt="Logo Literie du Comtat">
+  <p>
+    <strong>Entreprise :</strong> Fabrication et vente de produits de literie.<br>
+    <strong>Période :</strong> Juin à Juillet 2025.<br>
+    Stage effectué au sein du service administratif et informatique.
+  </p>
+
+
+        <div class="stage-highlight">
+          <h3>🎯 Mission principale</h3>
+          <p>
+            Ma mission consistait à <strong>mettre à jour et fiabiliser la base de données des fournisseurs et articles</strong>
+            utilisée pour la gestion des stocks et des achats.  
+            Je travaillais à partir de <strong>factures papier</strong> et d’une <strong>feuille de références interne</strong> listant les articles existants.
+          </p>
+        </div>
+
+        <div class="stage-highlight">
+          <h3>💻 Tâches réalisées</h3>
+          <ul>
+            <li>Lecture et tri des factures fournisseurs reçues par l’entreprise.</li>
+            <li>Vérification des articles dans la feuille de correspondance (<em>référence.jpg</em>).</li>
+            <li>Saisie ou mise à jour dans le logiciel de gestion (<em>fiche.jpg</em>).</li>
+            <li>Création de fiches articles manquantes et mise à jour des prix selon les factures.</li>
+            <li>Contrôle de cohérence, suppression des doublons et fiabilisation des données.</li>
+          </ul>
+        </div>
+
+        <div class="stage-highlight">
+          <h3>🧠 Compétences et outils</h3>
+          <ul>
+            <li>Gestion et mise à jour d’une base de données professionnelle.</li>
+            <li>Lecture et exploitation de documents comptables.</li>
+            <li>Rigueur et précision dans la saisie des informations.</li>
+            <li>Utilisation du logiciel interne et de feuilles Excel pour le suivi des références.</li>
+          </ul>
+        </div>
+
+        <div class="stage-highlight">
+          <h3>📘 Compatibilité avec le BTS SIO SISR</h3>
+          <p>
+            Ce stage m’a permis de travailler directement sur le <strong>système d’information</strong> de l’entreprise.
+            J’ai manipulé une base de données interne et contribué à sa fiabilité, développant ainsi des compétences
+            en <strong>maintenance, gestion et cohérence des données</strong> — essentielles à la filière SISR.
+          </p>
+        </div>
+
+        <div class="stage-highlight">
+          <h3>🧩 Bilan personnel</h3>
+          <p>
+            Ce stage m’a sensibilisé à l’importance de la <strong>qualité des données</strong> dans la gestion d’une entreprise.
+            Il m’a permis de développer ma méthode de travail, ma rigueur et ma compréhension du rôle des systèmes d’information
+            dans un contexte professionnel.  
+            Cette expérience confirme mon projet d’avenir : <strong>intégrer la Marine nationale en tant que technicien informatique</strong>.
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer>© 2025 Popek Christian — Portfolio BTS SIO</footer>
+</body>
+</html>
+
+
+

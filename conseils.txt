@@ -1,0 +1,6 @@
+projets : - page de garde avec menu projet scolaire / pro
+	  - fluidifier le projet scolaire/ moins de blabla 
+
+compétences : tableau de compétences 
+
+veille techno : améliorer le sujet 

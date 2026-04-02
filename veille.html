@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Veille Technologique - Popek Christian</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Space+Grotesk:wght@500;700&display=swap');
+    :root{--bg:#0f172a;--bg2:#0b1225;--text:#e2e8f0;--muted:#9aa9c3;--card:rgba(255,255,255,.06);--stroke:rgba(255,255,255,.12);--acc:#7c3aed;--acc2:#06b6d4;--shadow:0 10px 30px rgba(0,0,0,.35);--r:16px}
+    html, body {
+      min-height: 100%;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+    }
+    html {
+      background: #0a1122;
+    }
+    body {
+      min-height: 100vh;
+      font-family: Inter, system-ui, Segoe UI, Roboto, Arial;
+      color: var(--text);
+      background-color: #0a1122;
+      background:
+        radial-gradient(900px 460px at 8% -6%, rgba(124,58,237,.22), transparent 62%),
+        radial-gradient(760px 420px at 100% 0%, rgba(6,182,212,.16), transparent 58%),
+        linear-gradient(180deg, #0d1427 0%, #0b1225 48%, #0a1122 100%);
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+    }
+    main {
+      flex: 1;
+    }
+    .container{width:min(1100px,92%);margin:auto}
+    nav.nav{
+      width:100%;margin:0 auto;position:sticky;top:16px;z-index:50;display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:8px;padding:12px;border-radius:28px;
+      background:rgba(255,255,255,.04);backdrop-filter:blur(10px);border:1px solid var(--stroke);box-shadow:var(--shadow)}
+    nav.nav a, .dropdown-toggle {
+      position: relative;
+      color:var(--text);text-decoration:none;font-weight:700;padding:10px 16px;border-radius:999px;opacity:.88;transition:transform .15s ease,opacity .15s ease,box-shadow .15s ease,background .15s ease;display: flex;align-items: center;justify-content:center;min-height:44px;
+    }
+    nav.nav a:hover, .dropdown:hover .dropdown-toggle {opacity:1;transform:translateY(-1px)}
+    nav.nav a.active, .dropdown.active .dropdown-toggle{background:linear-gradient(90deg,var(--acc),var(--acc2));color:#fff;opacity:1;box-shadow:0 6px 18px rgba(124,58,237,.35)}
+    .dropdown{position:relative}
+    .dropdown::after{
+      content:"";position:absolute;left:0;right:0;top:100%;height:14px;
+    }
+    .dropdown:hover .dropdown-menu{display:flex}
+    .dropdown-menu{
+      display:none;flex-direction:column;gap:4px;position:absolute;top:calc(100% + 2px);left:50%;transform:translateX(-50%);background:rgba(15,23,42,.96);
+      padding:10px;border-radius:14px;border:1px solid var(--stroke);box-shadow:var(--shadow);z-index:1000;min-width:190px
+    }
+    .dropdown-menu a{
+      color:var(--text);padding:8px 12px;white-space:nowrap;text-decoration:none;font-weight:600;opacity:.92;border-radius:10px;
+    }
+    .dropdown-menu a:hover, .dropdown-menu a.active{
+      background:rgba(255,255,255,0.08);opacity:1
+    }
+    @media(max-width:720px){
+      nav.nav{border-radius:22px;padding:10px}
+      nav.nav a, .dropdown-toggle{width:100%}
+      .dropdown{width:100%}
+      .dropdown-menu{position:static;transform:none;margin-top:8px;min-width:0}
+    }
+    header{text-align:center;padding:36px 0 0}
+    h1{font-family:"Space Grotesk";font-size:clamp(28px,4vw,42px)}
+    section{padding:36px 0}
+    .card{background:var(--card);border:1px solid var(--stroke);border-radius:var(--r);padding:20px;box-shadow:var(--shadow);margin-bottom:20px}
+    h2{font-family:"Space Grotesk";font-size:22px;margin:0 0 14px}
+    p{color:var(--muted);line-height:1.7}
+    ul{padding-left:20px;color:var(--muted)}
+    li{margin-bottom:8px;line-height:1.6}
+    .hero-card{display:grid;grid-template-columns:1.28fr .72fr;gap:28px;align-items:center}
+    .hero-copy{display:flex;flex-direction:column;justify-content:center}
+    .hero-title{font-family:"Space Grotesk";font-size:clamp(30px,4.8vw,52px);line-height:1.05;margin:0 0 16px}
+    .hero-lead{font-size:1.08rem;line-height:1.8;color:#dbe7ff;max-width:62ch}
+    .hero-visual{display:grid;gap:18px;align-content:center}
+    .visual-pair{display:grid;grid-template-columns:1fr;gap:16px}
+    .media-card{background:transparent;border:none;border-radius:0;padding:0;box-shadow:none}
+    .media-card:nth-child(2){margin-left:44px}
+    .media-card img{width:100%;height:188px;object-fit:cover;border-radius:22px;display:block;border:1px solid rgba(255,255,255,.1);box-shadow:0 18px 40px rgba(0,0,0,.28)}
+    .media-caption{margin-top:10px;padding-left:4px;font-size:.93rem;line-height:1.45;font-weight:600;color:#cfe0ff}
+    .section-tag{display:inline-block;margin-bottom:12px;color:#9fb5d6;font-weight:800;text-transform:uppercase;letter-spacing:.08em;font-size:12px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+    .grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+    .mini-card{background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.04));border:1px solid var(--stroke);border-radius:18px;padding:20px;box-shadow:var(--shadow)}
+    .mini-card h3{margin:0 0 10px;font-size:1.08rem}
+    .mini-card p,.mini-card li{font-size:1rem;line-height:1.7}
+    .metric{font-family:"Space Grotesk";font-size:2rem;line-height:1;margin-bottom:10px;color:#fff}
+    .methods-card{display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .methods-copy{max-width:560px}
+    .methods-copy p{margin:0}
+    .methods-row{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+    .tool-item{position:relative}
+    .tool-button{
+      width:74px;height:74px;display:grid;place-items:center;border-radius:20px;
+      border:1px solid var(--stroke);background:rgba(255,255,255,.04);box-shadow:var(--shadow);
+      transition:transform .15s ease,background .15s ease,border-color .15s ease
+    }
+    .tool-button:hover{transform:translateY(-2px);background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2)}
+    .tool-button svg{width:42px;height:42px;display:block}
+    .rss-icon{width:42px;height:42px;border-radius:10px;display:block}
+    .tool-tip{
+      position:absolute;left:50%;bottom:calc(100% + 10px);transform:translateX(-50%) translateY(6px);
+      padding:8px 12px;border-radius:999px;background:rgba(15,23,42,.98);border:1px solid var(--stroke);
+      color:#e2e8f0;font-size:.86rem;font-weight:700;white-space:nowrap;opacity:0;pointer-events:none;
+      transition:opacity .15s ease,transform .15s ease
+    }
+    .tool-item:hover .tool-tip{opacity:1;transform:translateX(-50%) translateY(0)}
+    .impact{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+    .impact-item{padding:20px;border-radius:18px;border:1px solid var(--stroke);background:rgba(255,255,255,.05);box-shadow:var(--shadow)}
+    .impact-item strong{display:block;margin-bottom:10px;font-size:1.06rem;color:#fff}
+    .scorpion-card{display:grid;grid-template-columns:1.05fr .95fr;gap:22px;align-items:center}
+    .scorpion-card img{width:100%;height:100%;max-height:280px;object-fit:cover;border-radius:18px;border:1px solid var(--stroke);box-shadow:var(--shadow)}
+    .chip-list{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+    .chip{padding:8px 12px;border-radius:999px;border:1px solid var(--stroke);background:rgba(255,255,255,.05);color:#dbe7ff;font-size:.92rem;font-weight:700}
+    .timeline{display:grid;gap:16px;position:relative}
+    .timeline-step{position:relative;padding:22px 22px 22px 64px;background:rgba(255,255,255,.05);border:1px solid var(--stroke);border-radius:18px;box-shadow:var(--shadow)}
+    .timeline-step::before{content:"";position:absolute;left:28px;top:24px;width:14px;height:14px;border-radius:50%;background:linear-gradient(135deg,var(--acc),var(--acc2));box-shadow:0 0 0 6px rgba(124,58,237,.14)}
+    .timeline-step::after{content:"";position:absolute;left:34px;top:44px;bottom:-20px;width:2px;background:linear-gradient(180deg,rgba(124,58,237,.6),rgba(6,182,212,.2))}
+    .timeline-step:last-child::after{display:none}
+    .timeline-step h3{margin:0 0 8px;font-size:1.08rem}
+    .timeline-step p{margin:0}
+    .quote-card{padding:24px;border-radius:20px;border:1px solid rgba(124,58,237,.35);background:linear-gradient(135deg,rgba(124,58,237,.18),rgba(6,182,212,.12));box-shadow:var(--shadow);margin-top:20px}
+    .quote-card p{margin:0;font-size:1.15rem;line-height:1.8;color:#eef4ff}
+    .source-list a{color:#c6e8ff}
+    footer{margin-top:40px;padding:18px 0;text-align:center;color:var(--muted);border-top:1px solid var(--stroke);background:rgba(255,255,255,.02)}
+    .toggle{position:fixed;right:20px;bottom:20px;background:var(--card);border:1px solid var(--stroke);padding:10px 14px;border-radius:999px;cursor:pointer;box-shadow:var(--shadow)}
+    @media(max-width:980px){
+      .hero-card,.grid-3,.grid-2,.impact,.visual-pair,.scorpion-card{grid-template-columns:1fr}
+      .methods-card{flex-direction:column;align-items:flex-start}
+      .media-card:nth-child(2){margin-left:0}
+      .media-card img{height:220px}
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <nav class="nav">
+      <a href="index.html">Profil</a>
+      <a href="competence.html">Compétences</a>
+      <div class="dropdown">
+        <span class="dropdown-toggle">Stages ▾</span>
+        <div class="dropdown-menu">
+          <a href="stage2026.html">Stage 2026</a>
+          <a href="stage2025.html">Stage 2025</a>
+        </div>
+      </div>
+      <a href="scolaire.html">Projets</a>
+      <a href="veille.html" class="active">Veille Technologique</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <header><h1>Veille Technologique - Réseaux 5G & Défense navale</h1></header>
+
+    <section>
+      <div class="card hero-card">
+        <div class="hero-copy">
+          <h2 class="hero-title">Les evolutions recentes de la 5G militaire et les perspectives de la 6G dans les armees modernes</h2>
+          <p class="hero-lead">
+            Aujourd'hui, je vais presenter ma veille technologique sur les evolutions recentes de la 5G militaire et les
+            perspectives de la 6G. Ce sujet est en lien direct avec les <strong>reseaux</strong>, la <strong>cybersecurite</strong>
+            et mon projet professionnel dans la <strong>Marine nationale</strong>.
+          </p>
+        </div>
+        <div class="hero-visual">
+          <div class="visual-pair">
+            <div class="media-card">
+              <img src="nokia.png" alt="Illustration 5G militaire">
+              <div class="media-caption">5G : reseaux tactiques, faible latence, donnees en temps reel</div>
+            </div>
+            <div class="media-card">
+              <img src="6g.jpg" alt="Illustration 6G militaire">
+              <div class="media-caption">6G : intelligence artificielle, auto-optimisation, hyper-connectivite</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <div class="mini-card">
+          <span class="section-tag">Pourquoi ce sujet</span>
+          <h3>Un theme coherent avec le BTS SIO</h3>
+          <p>Reseaux, cybersecurite et communications critiques.</p>
+        </div>
+        <div class="mini-card">
+          <span class="section-tag">Lien personnel</span>
+          <h3>Defense et Marine nationale</h3>
+          <p>Un sujet directement lie a mon projet professionnel.</p>
+        </div>
+        <div class="mini-card">
+          <span class="section-tag">Objectif</span>
+          <h3>Aller a l'essentiel</h3>
+          <p>Comprendre ce qui est deja reel avec la 5G et ce que la 6G pourrait changer.</p>
+        </div>
+      </div>
+
+      <div class="card methods-card" style="margin-top:18px">
+        <div class="methods-copy">
+          <span class="section-tag">Methode de veille</span>
+          <h2>Une veille simple et reguliere</h2>
+          <p>Survoler les symboles pour voir les outils utilises.</p>
+        </div>
+        <div class="methods-row" aria-label="Outils de veille">
+          <div class="tool-item">
+            <div class="tool-tip">Flux RSS</div>
+            <div class="tool-button" aria-label="Flux RSS">
+              <svg class="rss-icon" viewBox="0 0 64 64" aria-hidden="true">
+                <rect x="0" y="0" width="64" height="64" rx="4" fill="#f98b1f"/>
+                <circle cx="16" cy="48" r="6" fill="#ffffff"/>
+                <path d="M16 30c10 0 18 8 18 18" fill="none" stroke="#ffffff" stroke-width="8" stroke-linecap="square"/>
+                <path d="M16 16c18 0 32 14 32 32" fill="none" stroke="#ffffff" stroke-width="8" stroke-linecap="square"/>
+              </svg>
+            </div>
+          </div>
+          <div class="tool-item">
+            <div class="tool-tip">Alertes Google</div>
+            <div class="tool-button" aria-label="Alertes Google">
+              <svg viewBox="0 0 64 64" aria-hidden="true">
+                <path d="M32 10a14 14 0 0 0-14 14v8c0 3-1 6-3 8l-3 4h40l-3-4c-2-2-3-5-3-8v-8A14 14 0 0 0 32 10Z" fill="none" stroke="#e2e8f0" stroke-width="4" stroke-linejoin="round"/>
+                <path d="M26 48a6 6 0 0 0 12 0" fill="none" stroke="#e2e8f0" stroke-width="4" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+          <div class="tool-item">
+            <div class="tool-tip">Articles recents</div>
+            <div class="tool-button" aria-label="Articles recents">
+              <svg viewBox="0 0 64 64" aria-hidden="true">
+                <rect x="12" y="14" width="40" height="36" rx="4" fill="none" stroke="#e2e8f0" stroke-width="4"/>
+                <path d="M20 24h10M20 32h24M20 40h24" fill="none" stroke="#e2e8f0" stroke-width="4" stroke-linecap="round"/>
+                <rect x="36" y="20" width="10" height="8" rx="1.5" fill="#e2e8f0"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card scorpion-card" style="margin-top:20px">
+        <div>
+          <span class="section-tag">Exemple concret</span>
+          <h2>Le programme SCORPION</h2>
+          <p>SCORPION illustre bien l'evolution actuelle : soldats, vehicules et systemes d'information sont relies dans un meme environnement numerise.</p>
+          <p>La 5G renforce cette logique avec des <strong>echanges plus rapides</strong>, une <strong>meilleure coordination</strong> et une <strong>remontee de donnees en temps reel</strong>.</p>
+          <div class="chip-list">
+            <span class="chip">Vehicules connectes</span>
+            <span class="chip">Communication rapide</span>
+            <span class="chip">Champ de bataille numerise</span>
+          </div>
+        </div>
+        <div>
+          <img src="scorpion.png" alt="Illustration du programme SCORPION">
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <div class="mini-card">
+          <span class="section-tag">Atout 5G</span>
+          <div class="metric">Faible latence</div>
+          <p>Reactions plus rapides sur le terrain.</p>
+        </div>
+        <div class="mini-card">
+          <span class="section-tag">Atout 5G</span>
+          <div class="metric">Haut debit</div>
+          <p>Video en direct et flux de donnees importants.</p>
+        </div>
+        <div class="mini-card">
+          <span class="section-tag">Atout 5G</span>
+          <div class="metric">Multi-equipements</div>
+          <p>Capteurs, drones, vehicules et outils de commandement connectes ensemble.</p>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:20px">
+        <span class="section-tag">Tendances observees</span>
+        <h2>Ce que ma veille montre</h2>
+        <div class="timeline">
+          <div class="timeline-step">
+            <h3>5G tactique deployable</h3>
+            <p>Des reseaux mobiles peuvent etre installes directement sur le terrain.</p>
+          </div>
+          <div class="timeline-step">
+            <h3>Drones en essaim</h3>
+            <p>La coordination de plusieurs drones devient plus fluide et plus rapide.</p>
+          </div>
+          <div class="timeline-step">
+            <h3>IA en temps reel</h3>
+            <p>L'analyse des donnees devient plus rapide et plus automatique.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <div class="mini-card">
+          <span class="section-tag">Perspective 6G</span>
+          <h3>6G : ce qui change</h3>
+          <ul>
+            <li>Des debits beaucoup plus eleves.</li>
+            <li>Une latence quasi nulle.</li>
+            <li>Des reseaux capables de s'auto-optimiser.</li>
+          </ul>
+        </div>
+        <div class="mini-card">
+          <span class="section-tag">Risques</span>
+          <h3>Le point sensible</h3>
+          <ul>
+            <li>Interception des communications.</li>
+            <li>Brouillage des reseaux.</li>
+            <li>Cyberattaques sur les infrastructures.</li>
+          </ul>
+        </div>
+        <div class="mini-card">
+          <span class="section-tag">Competition mondiale</span>
+          <h3>Un avantage strategique</h3>
+          <ul>
+            <li>Etats-Unis, Chine et Europe investissent massivement.</li>
+            <li>La maitrise reseau devient un enjeu de souverainete.</li>
+            <li>Performance et securite doivent avancer ensemble.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="quote-card">
+        <p>
+          Ce que je retiens : la guerre moderne ne se joue plus seulement sur le terrain, mais aussi dans la maitrise des reseaux et de l'information.
+        </p>
+      </div>
+
+      <div class="card">
+        <span class="section-tag">Conclusion</span>
+        <h2>En resume</h2>
+        <div class="grid-2">
+          <div class="mini-card">
+            <h3>La 5G</h3>
+            <p>Elle est deja en cours d'integration dans les armees.</p>
+          </div>
+          <div class="mini-card">
+            <h3>La 6G</h3>
+            <p>Elle annonce des reseaux plus intelligents, plus rapides et plus autonomes.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card source-list">
+        <span class="section-tag">Sources de veille</span>
+        <h2>Supports suivis</h2>
+        <ul>
+          <li><a href="https://www.defense.gouv.fr/marine" target="_blank">Defense.gouv - actualites institutionnelles</a></li>
+          <li><a href="https://www.opex360.com/" target="_blank">Opex360 - actualite defense</a></li>
+          <li><a href="https://www.numerama.com/" target="_blank">Numerama - actualite tech et telecoms</a></li>
+          <li><a href="https://www.nato.int/cps/en/natolive/topics_156418.htm" target="_blank">OTAN - technologies emergentes</a></li>
+          <li><a href="https://www.ieee.org/" target="_blank">IEEE - publications techniques</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer>© 2025 Popek Christian - Portfolio BTS SIO</footer>
+
+  <div class="toggle" id="themeToggle">🌙/☀️</div>
+  <script>
+    const k='theme';const s=localStorage.getItem(k);if(s)document.documentElement.setAttribute('data-theme',s);
+    document.getElementById('themeToggle').onclick=()=>{
+      const c=document.documentElement.getAttribute('data-theme')||'dark';
+      const n=c==='dark'?'light':'dark';
+      document.documentElement.setAttribute('data-theme',n);
+      localStorage.setItem(k,n);
+    }
+  </script>
+</body>
+</html>

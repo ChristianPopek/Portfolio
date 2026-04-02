@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Stages - Popek Christian</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Space+Grotesk:wght@500;700&display=swap');
+    :root {
+      --bg: #0f172a;
+      --bg2: #0b1225;
+      --text: #e2e8f0;
+      --muted: #9aa9c3;
+      --card: rgba(255,255,255,.05);
+      --stroke: rgba(255,255,255,.1);
+      --acc: #7c3aed;
+      --acc2: #06b6d4;
+      --shadow: 0 8px 25px rgba(0,0,0,.3);
+      --r: 16px;
+    }
+    body {
+      font-family: Inter, system-ui, Segoe UI, Roboto, Arial;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(180deg, var(--bg), var(--bg2));
+      color: var(--text);
+    }
+    .container {
+      width: min(1100px, 92%);
+      margin: auto;
+    }
+    nav.nav {
+      width: 100%;
+      margin: 0 auto;
+      position: sticky;
+      top: 16px;
+      z-index: 50;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 12px;
+      border-radius: 28px;
+      background: rgba(255,255,255,.04);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--stroke);
+      box-shadow: var(--shadow);
+    }
+    nav.nav a,
+    .dropdown-toggle {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 700;
+      padding: 10px 16px;
+      border-radius: 999px;
+      opacity: 0.88;
+      transition: transform 0.15s ease, opacity 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+    }
+    nav.nav a:hover,
+    .dropdown:hover .dropdown-toggle {
+      opacity: 1;
+      transform: translateY(-1px);
+    }
+    nav.nav a.active,
+    .dropdown.active .dropdown-toggle {
+      background: linear-gradient(90deg, var(--acc), var(--acc2));
+      color: #fff;
+      opacity: 1;
+      box-shadow: 0 6px 18px rgba(124,58,237,.35);
+    }
+    .dropdown {
+      position: relative;
+    }
+    .dropdown::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 100%;
+      height: 14px;
+    }
+    .dropdown-menu {
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      position: absolute;
+      top: calc(100% + 2px);
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: rgba(15,23,42,.96);
+      border-radius: 14px;
+      border: 1px solid var(--stroke);
+      padding: 10px;
+      min-width: 190px;
+      box-shadow: var(--shadow);
+      z-index: 1000;
+    }
+    .dropdown-menu a {
+      color: var(--text);
+      padding: 8px 12px;
+      white-space: nowrap;
+      text-decoration: none;
+      font-weight: 600;
+      opacity: 0.92;
+      border-radius: 10px;
+    }
+    .dropdown-menu a:hover,
+    .dropdown-menu a.active {
+      background: rgba(255,255,255,0.08);
+      opacity: 1;
+    }
+    .dropdown:hover .dropdown-menu {
+      display: flex;
+    }
+    @media (max-width:720px) {
+      nav.nav { border-radius: 22px; padding: 10px; }
+      nav.nav a, .dropdown-toggle { width: 100%; }
+      .dropdown { width: 100%; }
+      .dropdown-menu { position: static; transform: none; margin-top: 8px; min-width: 0; }
+    }
+    header {
+      text-align: center;
+      padding: 60px 0 10px;
+    }
+    h1 {
+      font-family: "Space Grotesk";
+      font-size: clamp(28px, 4vw, 42px);
+      margin-bottom: 10px;
+    }
+    .timeline {
+      position: relative;
+      margin: 50px 0;
+      padding-left: 30px;
+      border-left: 2px solid var(--stroke);
+    }
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      border-left: 2px solid var(--acc2);
+      opacity: 0.4;
+    }
+    .stage-block {
+      margin-bottom: 60px;
+      position: relative;
+      padding-left: 30px;
+    }
+    .stage-logo-float{
+      position:absolute;
+      top:-20px;
+      right:0;
+      width:190px;
+      border-radius:8px;
+      box-shadow:var(--shadow);
+      border:1px solid var(--stroke);
+    }
+    .stage-block::before {
+      content: "";
+      position: absolute;
+      left: -11px;
+      top: 5px;
+      width: 18px;
+      height: 18px;
+      background: linear-gradient(135deg, var(--acc), var(--acc2));
+      border-radius: 50%;
+    }
+    .stage-block h2 {
+      font-family: "Space Grotesk";
+      font-size: 24px;
+      margin: 0 0 6px;
+    }
+    .stage-block p {
+      color: var(--muted);
+      line-height: 1.6;
+      margin: 0 0 4px;
+    }
+    .stage-highlight {
+      background: var(--card);
+      border: 1px solid var(--stroke);
+      border-radius: var(--r);
+      padding: 20px;
+      box-shadow: var(--shadow);
+      margin-top: 6px;
+    }
+    ul {
+      padding-left: 20px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    li {
+      margin-bottom: 8px;
+    }
+    @media (max-width:720px) {
+      .stage-logo-float{
+        position:static;
+        display:block;
+        margin:10px 0 0 auto;
+      }
+    }
+    footer {
+      text-align: center;
+      color: var(--muted);
+      padding: 20px 0;
+      margin-top: 60px;
+      border-top: 1px solid var(--stroke);
+      background: rgba(255,255,255,.03);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <nav class="nav">
+      <a href="index.html">Profil</a>
+      <a href="competence.html">Compétences</a>
+      <div class="dropdown active">
+        <span class="dropdown-toggle">Stages ▾</span>
+        <div class="dropdown-menu">
+          <a href="stage2026.html" class="active">Stage 2026</a>
+          <a href="stage2025.html">Stage 2025</a>
+        </div>
+      </div>
+      <a href="scolaire.html">Projets</a>
+      <a href="veille.html">Veille Technologique</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <header>
+      <h1>Expérience de stage</h1>
+      <p>Retour sur mon stage de deuxième année de BTS SIO - option SISR</p>
+    </header>
+
+    <section class="timeline">
+      <div class="stage-block">
+        <h2>2026 - Cité scolaire Mistral</h2>
+        <img class="stage-logo-float" src="mistral.jpg" alt="Logo Cité scolaire Mistral">
+        <p style="margin-bottom:16px;">
+          <strong>Structure :</strong> lycée et collège publics.<br>
+          <strong>Période :</strong> janvier à février 2026.<br>
+          Stage réalisé au sein du service informatique, dans un environnement scolaire.
+        </p>
+
+        <div class="stage-highlight">
+          <h3>Mission principale</h3>
+          <p>
+            Ma mission principale était de participer à la <strong>maintenance du parc informatique</strong>,
+            au <strong>déploiement des postes</strong> et à l'<strong>assistance technique</strong> auprès des utilisateurs.
+            L'objectif était de garantir des équipements fonctionnels, bien configurés et rapidement disponibles pour les salles de cours.
+          </p>
+        </div>
+
+        <div class="stage-highlight">
+          <h3>Tâches réalisées</h3>
+          <ul>
+            <li>Remplacement et déploiement de PC dans une salle informatique.</li>
+            <li>Installation de l'image système des postes via le réseau.</li>
+            <li>Prise en main de <strong>Veyon</strong> pour la gestion et l'assistance à distance des ordinateurs.</li>
+            <li>Utilisation de <strong>GLPI</strong> pour le suivi du parc et des interventions techniques.</li>
+            <li>Configuration et tests de <strong>casques de réalité virtuelle</strong>.</li>
+            <li>Paramétrage d'un <strong>NAS</strong> pour le stockage et le partage de fichiers.</li>
+            <li>Résolution d'incidents courants sur les postes, le réseau, les imprimantes, les vidéoprojecteurs et différents périphériques.</li>
+          </ul>
+        </div>
+
+        <div class="stage-highlight">
+          <h3>Outils et environnement</h3>
+          <ul>
+            <li>Windows et outils d'administration du poste de travail.</li>
+            <li>Déploiement d'images système par le réseau.</li>
+            <li>Veyon pour la supervision et le pilotage à distance.</li>
+            <li>GLPI pour l'inventaire et le suivi des demandes.</li>
+            <li>Matériel pédagogique : salles informatiques, chariots mobiles, casques VR, NAS et périphériques.</li>
+          </ul>
+        </div>
+
+        <div class="stage-highlight">
+          <h3>Compétences développées</h3>
+          <ul>
+            <li>Installer, configurer et remettre en service un poste informatique.</li>
+            <li>Intervenir sur un réseau local et identifier rapidement une panne simple.</li>
+            <li>Gérer un parc matériel dans un contexte réel avec des contraintes d'usage.</li>
+            <li>Assister les utilisateurs avec méthode et clarté.</li>
+            <li>Travailler avec rigueur, autonomie et sens de l'organisation.</li>
+          </ul>
+        </div>
+
+        <div class="stage-highlight">
+          <h3>Apport pour le BTS SIO SISR</h3>
+          <p>
+            Ce stage m'a permis d'appliquer concrètement les compétences de la spécialité <strong>SISR</strong> :
+            support utilisateur, déploiement de postes, maintenance du parc, utilisation d'outils d'administration
+            et intervention sur un environnement réseau réel.
+          </p>
+        </div>
+
+        <div class="stage-highlight">
+          <h3>Bilan personnel</h3>
+          <p>
+            Cette expérience m'a permis de gagner en assurance sur le terrain, d'améliorer ma réactivité face aux incidents
+            et de confirmer mon intérêt pour l'administration système, le réseau et le support technique.
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer>© 2025 Popek Christian - Portfolio BTS SIO</footer>
+</body>
+</html>

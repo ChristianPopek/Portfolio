@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Popek Christian — Portfolio</title>
+  <meta name="theme-color" content="#0f172a"/>
+  <link rel="icon" href="favicon.svg"/>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Space+Grotesk:wght@500;700&display=swap');
+    :root{--bg:#0f172a;--bg2:#0b1225;--text:#e2e8f0;--muted:#9aa9c3;--card:rgba(255,255,255,.06);--stroke:rgba(255,255,255,.12);--acc:#7c3aed;--acc2:#06b6d4;--shadow:0 10px 30px rgba(0,0,0,.35);--r:16px}
+    [data-theme="light"]{--bg:#f7fafc;--bg2:#eef2f7;--text:#0f172a;--muted:#475569;--card:rgba(255,255,255,.85);--stroke:rgba(15,23,42,.08)}
+    *{box-sizing:border-box}html,body{margin:0;padding:0}
+    html, body {
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    html{
+      background: var(--bg2);
+    }
+    body{
+      min-height: 100vh;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial; color:var(--text);
+      background-color: var(--bg2);
+      background:
+        radial-gradient(1200px 600px at 10% -10%, rgba(124,58,237,.25), transparent 60%),
+        radial-gradient(800px 500px at 100% 0%, rgba(6,182,212,.22), transparent 55%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+      background-repeat:no-repeat;
+      background-size:100% 100%;
+    }
+    main {
+      flex: 1;
+    }
+    .container{width:min(1100px,92%);margin:auto}
+    nav.nav{
+      width:100%;margin:0 auto;position:sticky;top:16px;z-index:50;display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:8px;padding:12px;border-radius:28px;
+      background:rgba(255,255,255,.04);backdrop-filter:blur(10px);border:1px solid var(--stroke);box-shadow:var(--shadow)}
+    nav.nav a, .dropdown-toggle {
+      position: relative;display:flex;align-items:center;justify-content:center;min-height:44px;
+      color:var(--text);text-decoration:none;font-weight:700;padding:10px 16px;border-radius:999px;opacity:.88;transition:transform .15s ease,opacity .15s ease,box-shadow .15s ease,background .15s ease;
+    }
+    nav.nav a:hover, .dropdown:hover .dropdown-toggle {opacity:1;transform:translateY(-1px)}
+    nav.nav a.active, .dropdown.active .dropdown-toggle{background:linear-gradient(90deg,var(--acc),var(--acc2));color:#fff;opacity:1;box-shadow:0 6px 18px rgba(124,58,237,.35)}
+    .dropdown{position:relative}
+    .dropdown::after{
+      content:"";position:absolute;left:0;right:0;top:100%;height:14px;
+    }
+    .dropdown:hover .dropdown-menu{display:flex}
+    .dropdown-menu{
+      display:none;flex-direction:column;gap:4px;position:absolute;top:calc(100% + 2px);left:50%;transform:translateX(-50%);background:rgba(15,23,42,.96);
+      padding:10px;border-radius:14px;border:1px solid var(--stroke);box-shadow:var(--shadow);z-index:1000;min-width:190px
+    }
+    .dropdown-menu a{
+      color:var(--text);padding:8px 12px;white-space:nowrap;text-decoration:none;font-weight:600;opacity:.92;border-radius:10px;
+    }
+    .dropdown-menu a:hover, .dropdown-menu a.active{
+      background:rgba(255,255,255,0.08);opacity:1
+    }
+    @media(max-width:720px){
+      nav.nav{border-radius:22px;padding:10px}
+      nav.nav a, .dropdown-toggle{width:100%}
+      .dropdown{width:100%}
+      .dropdown-menu{position:static;transform:none;margin-top:8px;min-width:0}
+    }
+    header.site{padding:16px 0 0}
+    .hero{padding:54px 0 24px;text-align:center;position:relative}
+    .hero .halo{position:absolute;inset:24px 0 auto 0;height:220px;z-index:-1;filter:blur(40px);
+      background:radial-gradient(260px 120px at 30% 50%, rgba(124,58,237,.25), transparent 60%),
+                 radial-gradient(240px 120px at 70% 50%, rgba(6,182,212,.25), transparent 60%)}
+    .portrait{width:120px;height:120px;border-radius:50%;border:3px solid rgba(255,255,255,.35);box-shadow:var(--shadow);object-fit:cover}
+    h1{font-family:"Space Grotesk",Inter,sans-serif;font-size:clamp(32px,4vw,48px);margin:16px 0 6px;letter-spacing:.5px}
+    .sub{color:var(--muted);margin:6px 0 20px}
+    .btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+    section{padding:36px 0}
+    .section-title{font-family:"Space Grotesk";font-size:24px;margin:0 0 16px}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.04));border:1px solid var(--stroke);border-radius:var(--r);padding:18px;box-shadow:var(--shadow)}
+    .lead{font-size:1.05rem;line-height:1.7;color:var(--text)}
+    .muted{color:var(--muted)}
+    .two-col{display:grid;grid-template-columns:1.6fr 0.5fr;gap:18px;align-items:start}
+    .pill{display:inline-block;padding:7px 12px;border:1px solid var(--stroke);border-radius:999px;margin:0 8px 8px 0;background:rgba(255,255,255,.05);font-size:14px;color:var(--muted)}
+    .list{margin:0;padding-left:18px;color:var(--muted);line-height:1.7}
+    .block{margin-top:16px}
+    footer{padding:18px 0;text-align:center;color:var(--muted);border-top:1px solid var(--stroke);background:rgba(255,255,255,.02)}
+    .toggle{position:fixed;right:20px;bottom:20px;background:var(--card);border:1px solid var(--stroke);padding:10px 14px;border-radius:999px;cursor:pointer;box-shadow:var(--shadow);user-select:none}
+    @media(max-width:900px){.two-col{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <header class="site">
+    <div class="container">
+      <nav class="nav">
+        <a href="index.html" class="active">Profil</a>
+        <a href="competence.html">Compétences</a>
+        <div class="dropdown">
+          <span class="dropdown-toggle">Stages ▾</span>
+          <div class="dropdown-menu">
+            <a href="stage2026.html">Stage 2026</a>
+            <a href="stage2025.html">Stage 2025</a>
+          </div>
+        </div>
+        <a href="scolaire.html">Projets</a>
+        <a href="veille.html">Veille Technologique</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+    <div class="hero">
+      <div class="halo"></div>
+      <img class="portrait" src="moi.jpg" alt="Popek Christian">
+      <h1>Popek Christian</h1>
+      <p class="sub">BTS SIO SISR — Réseaux • Systèmes • Cybersécurité</p>
+    </div>
+  </header>
+
+<main class="container">
+  <section>
+    <h2 class="section-title">À propos de moi</h2>
+    <div class="card">
+      <p class="lead">
+        Étudiant en <strong>BTS SIO option SISR</strong>, je me forme aux infrastructures réseau et systèmes avec une vraie appétence pour la <strong>sécurité</strong> et l’<strong>exploitation</strong>. J’aime concevoir des environnements propres, documentés et fiables.
+      </p>
+      <div class="block">
+        <p class="muted">
+          Je progresse par la pratique : maquette de réseaux multi-sites (VLAN, routage, ACL), utilisation d’outils d’admin système, et mise à jour de bases de données en contexte réel lors de mon stage 2025.
+        </p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:28px;padding:20px;text-align:center">
+  <h3 style="margin:0 0 16px;font-weight:800;color:#e2e8f0;">
+    <span style="font-size:20px">⚓</span> Objectif professionnel
+  </h3>
+  <img src="marine.webp" alt="Logo Marine nationale" style="width:100px;height:auto;margin:10px 0;border-radius:8px;border:1px solid var(--stroke);box-shadow:var(--shadow)"/>
+  <p class="muted" style="margin:12px auto 0;max-width:600px">
+    Mon ambition est d’allier passion pour la technologie et service à la nation en intégrant la <strong>Marine nationale</strong> comme technicien informatique / réseaux.
+  </p>
+</div>
+
+
+  </section>
+  
+</main>
+
+  <footer><div class="container">© 2025 Popek Christian — Portfolio BTS SIO</div></footer>
+  <div class="toggle" id="themeToggle">🌙/☀️</div>
+  <script>
+    const key='theme'; const saved=localStorage.getItem(key);
+    if(saved) document.documentElement.setAttribute('data-theme',saved);
+    document.getElementById('themeToggle').onclick=()=>{
+      const cur=document.documentElement.getAttribute('data-theme')||'dark';
+      const next=cur==='dark'?'light':'dark';
+      document.documentElement.setAttribute('data-theme',next);
+      localStorage.setItem(key,next);
+    }
+  </script>
+</body>
+</html>
+
+
+
+
+
