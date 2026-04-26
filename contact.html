@@ -42,6 +42,12 @@
     textarea{min-height:140px}
     button{background:linear-gradient(90deg,var(--acc),var(--acc2));border:none;color:#fff;font-weight:700;cursor:pointer}
     button:hover{box-shadow:var(--shadow);transform:translateY(-1px)}
+    .status,.form-note{margin:0 0 16px;padding:12px 14px;border-radius:12px;border:1px solid var(--stroke);background:var(--card);line-height:1.5}
+    .status{display:none}
+    .status.is-visible{display:block}
+    .status.is-success{border-color:rgba(34,197,94,.35);background:rgba(34,197,94,.12);color:#dcfce7}
+    .status.is-info{border-color:rgba(56,189,248,.35);background:rgba(14,165,233,.12);color:#dbeafe}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
     footer{padding:18px 0;text-align:center;color:var(--muted);border-top:1px solid var(--stroke);background:rgba(255,255,255,.02)}
     .toggle{position:fixed;right:20px;bottom:20px;background:var(--card);border:1px solid var(--stroke);padding:10px 14px;border-radius:999px;cursor:pointer;box-shadow:var(--shadow)}
   </style>
@@ -66,11 +72,19 @@
     <header><h1>Contact</h1></header>
 
     <section>
-      <form>
+      <p class="status" id="formStatus" role="status" aria-live="polite"></p>
+      <p class="form-note">Les messages envoyes ici sont transmis a christianpopek115@gmail.com.</p>
+      <form action="https://formsubmit.co/christianpopek115@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="Nouveau message - Portfolio Christian Popek">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_next" id="formNext">
+        <input type="hidden" name="_url" id="formUrl">
+        <label class="sr-only" for="website">Website</label>
+        <input class="sr-only" id="website" name="_honey" type="text" tabindex="-1" autocomplete="off">
         <label for="nom">Nom</label>
-        <input id="nom" name="nom" type="text" placeholder="Votre nom" required>
+        <input id="nom" name="name" type="text" placeholder="Votre nom" autocomplete="name" required>
         <label for="email">Email</label>
-        <input id="email" name="email" type="email" placeholder="votre@email.com" required>
+        <input id="email" name="email" type="email" placeholder="votre@email.com" autocomplete="email" required>
         <label for="message">Message</label>
         <textarea id="message" name="message" placeholder="Votre message..." required></textarea>
         <button type="submit">Envoyer</button>
@@ -89,6 +103,37 @@
       const next=cur==='dark'?'light':'dark';
       document.documentElement.setAttribute('data-theme',next);
       localStorage.setItem(key,next);
+    }
+
+    const status=document.getElementById('formStatus');
+    const nextInput=document.getElementById('formNext');
+    const urlInput=document.getElementById('formUrl');
+    const params=new URLSearchParams(window.location.search);
+    const isHttp=window.location.protocol==='http:'||window.location.protocol==='https:';
+
+    if(isHttp){
+      const pageUrl=new URL(window.location.href);
+      pageUrl.searchParams.delete('submitted');
+      urlInput.value=pageUrl.href;
+
+      const successUrl=new URL(pageUrl.href);
+      successUrl.searchParams.set('submitted','1');
+      nextInput.value=successUrl.href;
+    }else{
+      nextInput.disabled=true;
+      urlInput.disabled=true;
+      status.textContent="Pour tester l'envoi automatique, ouvre cette page via un serveur web ou ton hebergement.";
+      status.className='status is-visible is-info';
+    }
+
+    if(params.get('submitted')==='1'){
+      status.textContent='Message envoye. Merci, je te repondrai rapidement.';
+      status.className='status is-visible is-success';
+      if(window.history.replaceState){
+        const cleanUrl=new URL(window.location.href);
+        cleanUrl.searchParams.delete('submitted');
+        window.history.replaceState({},'',cleanUrl);
+      }
     }
   </script>
 </body>
