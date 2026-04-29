@@ -7,6 +7,7 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Space+Grotesk:wght@500;700&display=swap');
     :root{--bg:#0f172a;--bg2:#0b1225;--text:#e2e8f0;--muted:#9aa9c3;--card:rgba(255,255,255,.06);--stroke:rgba(255,255,255,.12);--acc:#7c3aed;--acc2:#06b6d4;--shadow:0 10px 30px rgba(0,0,0,.35);--r:16px}
+    *{box-sizing:border-box}
     html, body {
       height: 100%;
       margin: 0;
@@ -73,7 +74,7 @@
 
     <section>
       <p class="status" id="formStatus" role="status" aria-live="polite"></p>
-      <p class="form-note">Les messages envoyes ici sont transmis a christianpopek115@gmail.com.</p>
+      <p class="form-note">Les messages envoyes ici sont transmis a christianpopek115@gmail.com</p>
       <form action="https://formsubmit.co/christianpopek115@gmail.com" method="POST">
         <input type="hidden" name="_subject" value="Nouveau message - Portfolio Christian Popek">
         <input type="hidden" name="_template" value="table">
@@ -122,8 +123,6 @@
     }else{
       nextInput.disabled=true;
       urlInput.disabled=true;
-      status.textContent="Pour tester l'envoi automatique, ouvre cette page via un serveur web ou ton hebergement.";
-      status.className='status is-visible is-info';
     }
 
     if(params.get('submitted')==='1'){
@@ -138,4 +137,3 @@
   </script>
 </body>
 </html>
-

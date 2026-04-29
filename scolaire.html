@@ -3,49 +3,72 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Projets scolaires — Popek Christian</title>
+  <title>Projets scolaires - Popek Christian</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Space+Grotesk:wght@500;700&display=swap');
     :root {
       --bg:#0f172a; --bg2:#0b1225; --text:#e2e8f0; --muted:#9aa9c3;
       --card:rgba(255,255,255,.05); --stroke:rgba(255,255,255,.1);
-      --acc:#7c3aed; --acc2:#06b6d4; --shadow:0 8px 25px rgba(0,0,0,.3); --r:16px
+      --acc:#7c3aed; --acc2:#06b6d4; --shadow:0 8px 25px rgba(0,0,0,.3); --r:16px;
     }
-    html { scroll-behavior: smooth }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       font-family: Inter, system-ui, Segoe UI, Roboto, Arial;
-      margin: 0; padding: 0;
+      margin: 0;
+      padding: 0;
       background: linear-gradient(180deg, var(--bg), var(--bg2));
       color: var(--text);
     }
-    .container { width: min(1100px, 92%); margin: auto }
+    .container { width: min(1100px, 92%); margin: auto; }
 
     nav.nav {
-      width: 100%; margin: 0 auto; position: sticky; top: 16px; z-index: 50;
-      display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 8px;
-      padding: 12px; border-radius: 28px;
-      background: rgba(255,255,255,.04); backdrop-filter: blur(10px);
-      border: 1px solid var(--stroke); box-shadow: var(--shadow)
+      width: 100%;
+      margin: 0 auto;
+      position: sticky;
+      top: 16px;
+      z-index: 50;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 12px;
+      border-radius: 28px;
+      background: rgba(255,255,255,.04);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--stroke);
+      box-shadow: var(--shadow);
     }
 
     nav.nav a, .dropdown-toggle {
-      color: var(--text); text-decoration: none; font-weight: 700;
-      padding: 10px 16px; border-radius: 999px; opacity: .88;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 700;
+      padding: 10px 16px;
+      border-radius: 999px;
+      opacity: .88;
       transition: transform .15s ease, opacity .15s ease, box-shadow .15s ease, background .15s ease;
-      display: flex; align-items: center; justify-content: center;
-      position: relative; min-height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      min-height: 44px;
     }
 
     nav.nav a:hover, .dropdown:hover .dropdown-toggle {
-      opacity: 1; transform: translateY(-1px)
+      opacity: 1;
+      transform: translateY(-1px);
     }
 
     nav.nav a.active, .dropdown.active .dropdown-toggle {
-      background: linear-gradient(90deg,var(--acc),var(--acc2));
-      color: #fff; opacity: 1; box-shadow: 0 6px 18px rgba(124,58,237,.35)
+      background: linear-gradient(90deg, var(--acc), var(--acc2));
+      color: #fff;
+      opacity: 1;
+      box-shadow: 0 6px 18px rgba(124,58,237,.35);
     }
 
-    .dropdown { position: relative }
+    .dropdown { position: relative; }
 
     .dropdown::after {
       content: "";
@@ -57,65 +80,250 @@
     }
 
     .dropdown-menu {
-      display: none; flex-direction: column; gap: 4px;
-      position: absolute; top: calc(100% + 2px); left: 50%; transform: translateX(-50%);
-      background: rgba(15,23,42,.96); padding: 10px;
-      border-radius: 14px; box-shadow: var(--shadow); border: 1px solid var(--stroke);
-      z-index: 1000; min-width: 190px;
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      position: absolute;
+      top: calc(100% + 2px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(15,23,42,.96);
+      padding: 10px;
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--stroke);
+      z-index: 1000;
+      min-width: 190px;
     }
 
     .dropdown-menu a {
-      color: var(--text); padding: 8px 12px;
-      white-space: nowrap; text-decoration: none;
-      font-weight: 600; opacity: .92; border-radius: 10px;
+      color: var(--text);
+      padding: 8px 12px;
+      white-space: nowrap;
+      text-decoration: none;
+      font-weight: 600;
+      opacity: .92;
+      border-radius: 10px;
     }
 
     .dropdown-menu a:hover, .dropdown-menu a.active {
-      background: rgba(255,255,255,0.08); opacity: 1
+      background: rgba(255,255,255,0.08);
+      opacity: 1;
     }
 
     .dropdown:hover .dropdown-menu {
-      display: flex
+      display: flex;
     }
 
     @media (max-width:720px){
-      nav.nav{border-radius:22px;padding:10px}
-      nav.nav a,.dropdown-toggle{width:100%}
-      .dropdown{width:100%}
-      .dropdown-menu{position:static;transform:none;margin-top:8px;min-width:0}
+      nav.nav { border-radius:22px; padding:10px; }
+      nav.nav a, .dropdown-toggle { width:100%; }
+      .dropdown { width:100%; }
+      .dropdown-menu { position:static; transform:none; margin-top:8px; min-width:0; }
     }
 
-    header { text-align: center; padding: 60px 0 10px }
-    h1 { font-family: "Space Grotesk"; font-size: clamp(28px,4vw,42px); margin-bottom: 10px }
-    .section-title { font-family:"Space Grotesk"; font-size: 24px; margin: 20px 0 14px }
-    .grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)) }
-    .card { background: var(--card); border:1px solid var(--stroke); border-radius: var(--r); padding:18px; box-shadow: var(--shadow) }
-    .card h3 { margin:6px 0 8px }
-    .card p { color:var(--muted); margin:0 }
-    .meta { color:var(--muted); font-size:14px; margin-top:6px }
-    .link { display: block; text-decoration: none; color: inherit; transition: transform .18s }
-    .link:hover { transform: translateY(-3px) }
-    .divider { display: flex; align-items: center; gap: 12px; margin: 36px 0 8px }
-    .divider .line { flex:1; height:1px; background: linear-gradient(90deg, transparent, var(--acc2), transparent) }
-    .divider .label { font-weight:800; color:var(--muted) }
+    header {
+      text-align: center;
+      padding: 60px 0 10px;
+    }
 
-    .timeline { position: relative; margin: 28px 0 10px; padding-left: 30px; border-left: 2px solid var(--stroke) }
-    .timeline::before { content:""; position:absolute; left:0; top:0; height:100%; border-left: 2px solid var(--acc2); opacity: .4 }
-    .block { margin-bottom: 42px; position: relative; padding-left: 30px }
-    .block::before { content:""; position:absolute; left:-11px; top:5px; width:18px; height:18px; background:linear-gradient(135deg,var(--acc),var(--acc2)); border-radius:50% }
-    .block h2 { font-family:"Space Grotesk"; font-size:22px; margin:0 0 10px }
-    .block p { color:var(--muted); line-height:1.6; margin:0 0 12px }
-    .highlight { background:var(--card); border:1px solid var(--stroke); border-radius:var(--r); padding:18px; box-shadow:var(--shadow); margin-top:10px }
-    .split { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start }
-    .kbd { font-family: monospace; background: rgba(255,255,255,.07); border:1px solid var(--stroke); padding:2px 6px; border-radius:6px }
-    ul { padding-left: 20px; color: var(--muted); line-height: 1.6 }
-    li { margin-bottom: 6px }
-    .pill { display:inline-block; padding:6px 10px; border:1px solid var(--stroke); border-radius:999px; margin:0 6px 6px 0; background:rgba(255,255,255,.05); font-size:14px; color:var(--muted) }
-    .img-block { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 14px }
-    .img img { width: 100%; display: block; border-radius: 12px; box-shadow: var(--shadow) }
-    .caption { padding: 8px 12px; font-size: 14px; color: var(--muted) }
-    footer { text-align: center; color: var(--muted); padding: 20px 0; margin: 50px 0 0; border-top: 1px solid var(--stroke); background: rgba(255,255,255,.03) }
-    @media (max-width:900px){ .split { grid-template-columns:1fr } .img-block { grid-template-columns:1fr } }
+    h1 {
+      font-family: "Space Grotesk";
+      font-size: clamp(28px,4vw,42px);
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-family:"Space Grotesk";
+      font-size: 24px;
+      margin: 20px 0 14px;
+    }
+
+    .grid {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+    }
+
+    .card {
+      background: var(--card);
+      border:1px solid var(--stroke);
+      border-radius: var(--r);
+      padding:18px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 { margin:6px 0 8px; }
+    .card p { color:var(--muted); margin:0; }
+    .meta { color:var(--muted); font-size:14px; margin-top:6px; }
+
+    .link {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      transition: transform .18s;
+    }
+
+    .link:hover { transform: translateY(-3px); }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 36px 0 8px;
+    }
+
+    .divider .line {
+      flex:1;
+      height:1px;
+      background: linear-gradient(90deg, transparent, var(--acc2), transparent);
+    }
+
+    .divider .label {
+      font-weight:800;
+      color:var(--muted);
+    }
+
+    .timeline {
+      position: relative;
+      margin: 28px 0 10px;
+      padding-left: 30px;
+      border-left: 2px solid var(--stroke);
+    }
+
+    .timeline::before {
+      content:"";
+      position:absolute;
+      left:0;
+      top:0;
+      height:100%;
+      border-left: 2px solid var(--acc2);
+      opacity: .4;
+    }
+
+    .block {
+      margin-bottom: 42px;
+      position: relative;
+      padding-left: 30px;
+    }
+
+    .block::before {
+      content:"";
+      position:absolute;
+      left:-11px;
+      top:5px;
+      width:18px;
+      height:18px;
+      background:linear-gradient(135deg,var(--acc),var(--acc2));
+      border-radius:50%;
+    }
+
+    .block h2 {
+      font-family:"Space Grotesk";
+      font-size:22px;
+      margin:0 0 10px;
+    }
+
+    .block p {
+      color:var(--muted);
+      line-height:1.6;
+      margin:0 0 12px;
+    }
+
+    .highlight {
+      background:var(--card);
+      border:1px solid var(--stroke);
+      border-radius:var(--r);
+      padding:18px;
+      box-shadow:var(--shadow);
+      margin-top:10px;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .kbd {
+      font-family: monospace;
+      background: rgba(255,255,255,.07);
+      border:1px solid var(--stroke);
+      padding:2px 6px;
+      border-radius:6px;
+    }
+
+    ul {
+      padding-left: 20px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    li { margin-bottom: 6px; }
+
+    .pill {
+      display:inline-block;
+      padding:6px 10px;
+      border:1px solid var(--stroke);
+      border-radius:999px;
+      margin:0 6px 6px 0;
+      background:rgba(255,255,255,.05);
+      font-size:14px;
+      color:var(--muted);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 8px;
+      color: var(--text);
+    }
+
+    th, td {
+      border: 1px solid var(--stroke);
+      padding: 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      font-family: "Space Grotesk";
+      background: rgba(255,255,255,.04);
+    }
+
+    .visual {
+      margin-top: 16px;
+    }
+
+    .visual img {
+      width: 100%;
+      display: block;
+      border-radius: 14px;
+      border: 1px solid var(--stroke);
+      box-shadow: var(--shadow);
+      background: rgba(255,255,255,.03);
+    }
+
+    .caption {
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 10px;
+      line-height: 1.5;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      padding: 20px 0;
+      margin: 50px 0 0;
+      border-top: 1px solid var(--stroke);
+      background: rgba(255,255,255,.03);
+    }
+
+    @media (max-width:900px) {
+      .split { grid-template-columns:1fr; }
+    }
   </style>
 </head>
 <body>
@@ -137,143 +345,214 @@
 
     <header>
       <h1>Projets scolaires</h1>
-      <p>Projets réalisés dans le cadre de mon BTS SIO SISR</p>
+      <p>Projet réalisé dans le cadre de mon BTS SIO SISR</p>
     </header>
 
     <section>
-      <h2 class="section-title">Aperçu</h2>
+      <h2 class="section-title">Apercu</h2>
       <div class="grid">
-        <a class="card link" href="#reseau-multisites">
-          <h3>Réseau multi-sites</h3>
-          <p>Conception d’un réseau d’entreprise : siège + 4 agences, VLAN, routage, ACL.</p>
-          <p class="meta">Cisco Packet Tracer · BTS SIO 2025</p>
+        <a class="card link" href="#projet-gsb">
+          <h3>Projet GSB - site d'Avignon</h3>
+          <p>Conception d'une infrastructure virtualisée avec Proxmox, pfSense, VLAN, Active Directory, DNS, DHCP et Wi-Fi invité.</p>
+          <p class="meta">BTS SIO SISR - réseau 172.24.x.0/24</p>
         </a>
       </div>
     </section>
 
-    <div class="divider" id="reseau-multisites">
+    <div class="divider" id="projet-gsb">
       <span class="line"></span>
-      <span class="label">Détail — Réseau multi-sites</span>
+      <span class="label">Detail - Projet GSB</span>
       <span class="line"></span>
     </div>
 
-    <section class="timeline" aria-label="Détail projet réseau multi-sites">
+    <section class="timeline" aria-label="Detail projet GSB">
       <div class="block">
-        <h2>Contexte & objectifs</h2>
+        <h2>Contexte et objectifs</h2>
         <p>
-          Mise en place d’un <strong>réseau d’entreprise multi-sites</strong> reliant un siège et quatre agences.
-          Objectifs : <em>segmentation</em> par métiers via VLAN, <em>routage inter-sites</em>, <em>contrôle des flux</em> par ACL,
-          et <em>documentation</em> (schémas + tables d’adressage). Le schéma de topologie ci-dessous présente l’architecture WAN.
+          Le projet porte sur le déploiement du nouveau site GSB d'Avignon après la fusion entre Galaxy et Swiss Bourdin.
+          L'objectif est de livrer une infrastructure complète, segmentée, sécurisée et interopérable pour les utilisateurs,
+          les serveurs internes, l'administration et l'accès Wi-Fi visiteurs.
         </p>
         <div class="highlight">
-          <span class="pill">Topologie hiérarchique</span>
-          <span class="pill">VLAN par service</span>
-          <span class="pill">Routage dynamique</span>
-          <span class="pill">ACL filtrantes</span>
-          <span class="pill">Sauvegardes des configs</span>
+          <span class="pill">Proxmox</span>
+          <span class="pill">pfSense</span>
+          <span class="pill">VLAN</span>
+          <span class="pill">Active Directory</span>
+          <span class="pill">DNS / DHCP</span>
+          <span class="pill">Redondance</span>
         </div>
       </div>
 
       <div class="block">
-        <h2>Visuels du projet</h2>
-        <div class="img-block">
-          <figure class="img">
-            <img src="reseaunationale.png" alt="Topologie multi-sites (siège + 4 agences, liens WAN)">
-            <figcaption class="caption">Schéma de <strong>topologie multi-sites</strong> : siège + agences interconnectés par WAN.</figcaption>
-          </figure>
-          <figure class="img">
-            <img src="reseausiege.png" alt="Plan de VLAN au siège (Direction, RH, Informatique)">
-            <figcaption class="caption">Plan des <strong>VLAN au siège</strong> (Direction, RH, Informatique) avec équipements associés.</figcaption>
-          </figure>
+        <h2>Infrastructure technique</h2>
+        <div class="visual">
+          <img src="gsb-schema.svg" alt="Schéma réseau du projet GSB avec pfSense, switches, serveurs, postes clients et borne Wi-Fi">
+          <p class="caption">
+            Schéma réseau du projet GSB : deux pfSense reliés par les switches S1 et S2, avec les postes utilisateurs,
+            les serveurs AD et Web, ainsi que la borne Wi-Fi visiteurs.
+          </p>
         </div>
-      </div>
-
-      <div class="block">
-        <h2>Architecture globale</h2>
         <div class="split">
           <div class="highlight">
-            <h3>Sites</h3>
+            <h3>Virtualisation</h3>
             <ul>
-              <li><strong>Siège — Paris</strong> : VLAN Direction, RH, Informatique, imprimantes… (voir schéma “VLAN au siège”)</li>
-              <li><strong>Agences — Lyon, Bordeaux, Toulouse, Avignon</strong> : 2 à 3 VLAN selon les métiers</li>
-              <li>Interconnexion des routeurs par liens WAN (voir schéma de topologie)</li>
+              <li>Deux serveurs Proxmox hébergent les machines virtuelles nécessaires au site.</li>
+              <li>Chaque hyperviseur utilise trois interfaces réseau distinctes.</li>
+              <li><span class="kbd">WAN</span> pour l'accès extérieur, <span class="kbd">LAN</span> pour les VLAN internes et <span class="kbd">DMZ</span> pour les services exposés.</li>
             </ul>
           </div>
           <div class="highlight">
-            <h3>Plan d’adressage</h3>
-            <p>Adressage privé IPv4, sous-réseaux par site puis par VLAN au siège.</p>
+            <h3>Commutation et cœur réseau</h3>
             <ul>
-              <li>Découpage adapté aux besoins hôtes</li>
-              <li>Passerelles <span class="kbd">.1</span> par VLAN</li>
-              <li>Table d’adressage consolidée pour la doc</li>
+              <li>Deux switches Cisco Catalyst 2960 assurent la commutation.</li>
+              <li>Les VLAN sont configurés sur les deux commutateurs.</li>
+              <li>Une liaison <span class="kbd">trunk</span> transporte les flux inter-VLAN entre les équipements.</li>
+              <li>pfSense joue le rôle de routeur principal et de pare-feu.</li>
             </ul>
           </div>
         </div>
       </div>
 
       <div class="block">
-        <h2>VLAN & commutation</h2>
+        <h2>Segmentation réseau</h2>
         <div class="highlight">
-          <ul>
-            <li>Création des VLAN (<span class="kbd">vlan 10</span>, <span class="kbd">20</span>, <span class="kbd">30</span>…).</li>
-            <li>Ports en <span class="kbd">access</span> affectés aux terminaux ; SVI pour la gestion.</li>
-            <li>Vérification de l’isolement intra-site et de la communication au sein d’un même VLAN.</li>
-          </ul>
+          <p>
+            Le plan d'adressage correct du projet est basé sur le réseau <strong>172.24.x.0/24</strong>.
+            Chaque service est isolé dans son propre VLAN afin de séparer les usages et limiter les flux sensibles.
+          </p>
+          <table>
+            <thead>
+              <tr>
+                <th>VLAN</th>
+                <th>Nom</th>
+                <th>Usage</th>
+                <th>Plage IP</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>10</td>
+                <td>Employés</td>
+                <td>Postes de travail standards</td>
+                <td>172.24.10.0/24</td>
+              </tr>
+              <tr>
+                <td>20</td>
+                <td>RH</td>
+                <td>Données sensibles des ressources humaines</td>
+                <td>172.24.20.0/24</td>
+              </tr>
+              <tr>
+                <td>30</td>
+                <td>Direction</td>
+                <td>Direction du site d'Avignon</td>
+                <td>172.24.30.0/24</td>
+              </tr>
+              <tr>
+                <td>40</td>
+                <td>Serveurs</td>
+                <td>Contrôleurs de domaine et serveurs internes</td>
+                <td>172.24.40.0/24</td>
+              </tr>
+              <tr>
+                <td>99</td>
+                <td>Management</td>
+                <td>Administration des switches, routeurs et bornes</td>
+                <td>172.24.99.0/24</td>
+              </tr>
+              <tr>
+                <td>150</td>
+                <td>Wi-Fi</td>
+                <td>Accès visiteurs isolé du réseau interne</td>
+                <td>172.24.150.0/24</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
 
       <div class="block">
-        <h2>Routage inter-sites</h2>
-        <div class="highlight">
-          <p>Mise en place d’un <strong>routage dynamique (RIPv2)</strong> pour propager automatiquement les routes.</p>
-          <ul>
-            <li>Config : <span class="kbd">router rip</span> · <span class="kbd">version 2</span> · <span class="kbd">network …</span> · <span class="kbd">no auto-summary</span></li>
-            <li>Validation : tests de connectivité croisés (pings inter-agences).</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="block">
-        <h2>Sécurité (ACL)</h2>
-        <div class="highlight">
-          <ul>
-            <li>ACL étendues pour <strong>autoriser/limiter</strong> les flux entre VLAN sensibles.</li>
-            <li>Blocage d’ICMP vers certains hôtes, filtrage entre VLAN « Direction » et autres.</li>
-            <li>Application <span class="kbd">in</span> sur les interfaces concernées.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="block">
-        <h2>Tests & validation</h2>
-        <div class="highlight">
-          <ul>
-            <li>Plan de tests : intra-VLAN, inter-VLAN autorisés, inter-sites, blocages ACL.</li>
-            <li>Outil : <strong>Cisco Packet Tracer</strong>.</li>
-            <li>Résultats consignés dans la documentation.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="block">
-        <h2>Livrables & compétences</h2>
+        <h2>Services Windows Server 2022</h2>
         <div class="split">
           <div class="highlight">
-            <h3>Livrables</h3>
+            <h3>Active Directory</h3>
+            <p>
+              Deux serveurs Windows Server 2022 sont configurés comme contrôleurs de domaine du domaine
+              <span class="kbd">GSBLocal4.local</span>.
+            </p>
             <ul>
-              <li>Schémas logique & physique (dont les deux visuels ci-dessus).</li>
-              <li>Table d’adressage.</li>
-              <li>Exports de configuration routeurs/switches.</li>
-              <li>Procédure de tests.</li>
+              <li>Réplication des objets de l'annuaire entre les deux serveurs.</li>
+              <li>Authentification centralisée des utilisateurs et des postes.</li>
+              <li>Organisation des droits par groupes métiers.</li>
             </ul>
           </div>
           <div class="highlight">
-            <h3>Compétences SISR</h3>
+            <h3>Groupes et administration</h3>
             <ul>
-              <li>Conception d’architecture réseau multi-sites.</li>
-              <li>Segmentation VLAN et inter-VLAN.</li>
-              <li>Routage dynamique, troubleshooting.</li>
-              <li>Filtrage L3 (ACL), documentation.</li>
+              <li><strong>AdminsDomaine</strong> : administration de l'infrastructure.</li>
+              <li><strong>OfficeUsers</strong> : utilisateurs locaux d'Avignon.</li>
+              <li><strong>GSBWorker</strong> : employés globaux de l'entreprise.</li>
+              <li><strong>Hello My Dir</strong> : intégration d'une solution d'authentification moderne.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="block">
+        <h2>Services réseau et disponibilité</h2>
+        <div class="highlight">
+          <ul>
+            <li><strong>DNS</strong> : résolution des noms internes et accès aux services du domaine, dont le wiki interne.</li>
+            <li><strong>DHCP</strong> : distribution des adresses IP pour les VLAN 10, 20, 30 et 150.</li>
+            <li>Les 100 premières adresses de chaque VLAN sont réservées aux équipements statiques.</li>
+            <li>La redondance est mise en place sur AD DS, DNS et selon le mode choisi sur DHCP afin de limiter les interruptions de service.</li>
+            <li>En cas de panne d'un serveur, le second peut prendre le relais pour conserver l'authentification et la résolution de noms.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="block">
+        <h2>Sécurité et Wi-Fi visiteurs</h2>
+        <div class="split">
+          <div class="highlight">
+            <h3>Sécurisation</h3>
+            <ul>
+              <li>pfSense porte les passerelles par défaut des VLAN et filtre les flux entre segments.</li>
+              <li>Le VLAN 99 est réservé à l'administration des équipements réseau.</li>
+              <li>L'administration des commutateurs se fait uniquement en <span class="kbd">SSH</span> après la configuration initiale.</li>
+            </ul>
+          </div>
+          <div class="highlight">
+            <h3>Wi-Fi visiteurs</h3>
+            <ul>
+              <li>Borne TP-Link EAP110 alimentée via injecteur PoE.</li>
+              <li>SSID de type <span class="kbd">GSBXX_Visiteurs</span> selon le numéro du local.</li>
+              <li>Le trafic Wi-Fi est isolé dans le VLAN 150.</li>
+              <li>Les visiteurs n'ont pas d'accès direct au réseau interne.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="block">
+        <h2>Compétences mobilisées</h2>
+        <div class="split">
+          <div class="highlight">
+            <h3>Compétences techniques</h3>
+            <ul>
+              <li>Concevoir une architecture réseau segmentée.</li>
+              <li>Configurer des VLAN, trunks et passerelles inter-VLAN.</li>
+              <li>Administrer un domaine Windows Server avec AD DS, DNS et DHCP.</li>
+              <li>Mettre en place une logique de redondance et de sécurisation.</li>
+            </ul>
+          </div>
+          <div class="highlight">
+            <h3>Livrables attendus</h3>
+            <ul>
+              <li>Schéma logique et schéma d'implantation.</li>
+              <li>Plan d'adressage par VLAN.</li>
+              <li>Configurations réseau et système.</li>
+              <li>Documentation de tests et de validation.</li>
             </ul>
           </div>
         </div>
@@ -281,6 +560,6 @@
     </section>
   </div>
 
-  <footer>© 2025 Popek Christian — Portfolio BTS SIO</footer>
+  <footer>© 2025 Popek Christian - Portfolio BTS SIO</footer>
 </body>
 </html>
